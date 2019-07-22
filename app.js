@@ -17,6 +17,7 @@ app.use(methodOverride('_method'))
 app.use(flash());
 mongoose.connect(process.env.databaseUrl, {useNewUrlParser:true, useFindAndModify: false});
 // mongoose.connect("mongodb+srv://sbaglivi:Lifeanddeath1995@cluster0-rctet.mongodb.net/firstapp?retryWrites=true&w=majority", {useNewUrlParser:true, useFindAndModify: false});
+//mongodb://localhost:27017/test
 
 app.use(require('express-session')({
     secret: 'This is the red wheelbarrow',
