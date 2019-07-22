@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" href="http://icons.iconarchive.com/icons/icons8/ios7/128/Animals-Dog-House-icon.png">
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-sm-4">
+      <div class="container">
+        <a class="navbar-brand" href="/">Items</a>
+        <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <% if(!currentUser) { %>
+            <a class="nav-item nav-link" href="/login">Login</a>
+            <a class="nav-item nav-link" href="/register">Sign up</a>
+            <% } else { %>
+            <a class="nav-item nav-link" href="#">Signed in as <%= currentUser.username %></a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      </nav>
+      <div class="container">
+        <% if(success && success.length > 0){ %>
+        <div class="alert alert-success" role="alert">
+          <h1><%= success %></h1>
+        </div>
+        <% } %>
+        <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger" role="alert">
+          <h1><%= error %></h1>
+        </div>
+        <% } %>
+      </div>
