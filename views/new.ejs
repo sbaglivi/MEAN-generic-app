@@ -1,0 +1,21 @@
+<% include partials/header.ejs %>
+<div style="width:40%; margin: 0 auto; text-align: center">
+    <h1 style="padding: 5%">Insert a new item </h1>
+    <form ACTION="/" METHOD="POST">
+        <div class="form-group">
+            <input type="text" class="form-control" name="newItem[name]" placeholder="Item name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="newItem[price]" placeholder="Item price">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="newItem[image]" placeholder="Url of the image">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="newItem[description]" placeholder="Brief description of the item"></textarea>
+        </div>  
+        <button style="margin-top: 5%" class="btn btn-success btn-lg">Submit</button>
+    </form>
+</div>
+
+<% include partials/footer.ejs %>

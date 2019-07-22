@@ -1,0 +1,35 @@
+<% include partials/header.ejs %>
+<div style="width:50%; margin: 0 auto">
+    <h1>
+        <span><%= item.name %> submitted by <%=item.author.username%> </span>
+        <span style="float: right"><%= item.price %></span>
+    </h1>
+    <p class="d-inline"> <%= item.date.toDateString() %> </p>
+    <% if(currentUser && item.author.id.equals(currentUser._id)){ %>
+        <span style="float: right; margin-bottom: 10px">
+            <a class="d-inline btn btn-warning" href="/<%=item._id%>/edit">Edit</a>
+            <form class="d-inline" ACTION="/<%=item._id%>?_method=DELETE" METHOD="POST">
+                <button style="height: 31px; padding: 0px 12px;" class="btn btn-danger">Delete</button>
+            </form>
+        </span>
+    <% } %>
+    <div class="row mx-0" style="width: 100%">
+        <div class="col-md-6" style="padding: 0px">
+            <img style="max-width: 100%" src="<%= item.image %>" >
+        </div>
+        <div class="col-md-6" style="text-align: right">
+            <p style="position: absolute; top: 50%; width: 100%"> <%= item.description %> </p>
+            <% item.comments.forEach(function(comment){ %>
+                <p> <strong><%=comment.author.username %></strong> <%= comment.text %> </p>
+                    <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-warning btn-sm" href="/<%=item._id%>/comment/<%=comment._id%>/edit">Edit</a>
+                        <form style="display: inline" action="/<%=item._id%>/comment/<%=comment._id%>?_method=DELETE" method="post">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    <% } %>
+            <% }) %>
+            <a class="btn btn-primary" style="display: block" href="/<%= item._id%>/comment/new">Add comment</a>
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>
