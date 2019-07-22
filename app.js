@@ -15,7 +15,7 @@ var flash = require('connect-flash');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'))
 app.use(flash());
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser:true, useFindAndModify: false});
+mongoose.connect("mongodb+srv://sbaglivi:Lifeanddeath1995@cluster0-rctet.mongodb.net/firstapp?retryWrites=true&w=majority", {useNewUrlParser:true, useFindAndModify: false});
 
 app.use(require('express-session')({
     secret: 'This is the red wheelbarrow',
