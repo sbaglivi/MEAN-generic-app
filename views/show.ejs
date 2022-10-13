@@ -1,35 +1,52 @@
-<% include partials/header.ejs %>
-<div style="width:50%; margin: 0 auto">
-    <h1>
-        <span><%= item.name %> submitted by <%=item.author.username%> </span>
-        <span style="float: right"><%= item.price %></span>
-    </h1>
-    <p class="d-inline"> <%= item.date.toDateString() %> </p>
-    <% if(currentUser && item.author.id.equals(currentUser._id)){ %>
-        <span style="float: right; margin-bottom: 10px">
-            <a class="d-inline btn btn-warning" href="/<%=item._id%>/edit">Edit</a>
-            <form class="d-inline" ACTION="/<%=item._id%>?_method=DELETE" METHOD="POST">
-                <button style="height: 31px; padding: 0px 12px;" class="btn btn-danger">Delete</button>
-            </form>
-        </span>
-    <% } %>
-    <div class="row mx-0" style="width: 100%">
-        <div class="col-md-6" style="padding: 0px">
-            <img style="max-width: 100%" src="<%= item.image %>" >
+<%- include ('partials/header.ejs') %>
+<div class="container singleItemDiv">
+    <div class="row">
+        <h1 class="col"><%= item.name %></h1>
+        <h1 class="col-auto text-right">€ <%= item.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></h1>
+    </div>
+    <div class="row">
+        <p class="col-md-9">by <%=item.author.username%>, <%= item.date.toDateString() %> </p>
+        <!-- <p class="col-md-9"> submitted by <%=item.author.username%> on <%= item.date.toDateString() %> </p> -->
+        <% if(currentUser && item.author.id.equals(currentUser._id)){ %>
+            <div class="col-md-3 text-right" >
+                <a class="btn btn-warning " href="/<%=item._id%>/edit">Edit</a>
+                <form class="d-inline" ACTION="/<%=item._id%>?_method=DELETE" METHOD="POST">
+                    <button class="btn btn-danger ">Delete</button>
+                </form>
+            </div>
+        <% } %>
+    </div>
+    <div class="row" style="width: 100%">
+        <div style="min-height: 200px; max-height: 400px; object-fit:contain;" class="col-md-6" style="padding: 0px">
+            <img class="fallback" style="height: 100%" src="<%= item.image %>" >
         </div>
-        <div class="col-md-6" style="text-align: right">
-            <p style="position: absolute; top: 50%; width: 100%"> <%= item.description %> </p>
+        <div class="col-md-6 descriptionDiv" >
+            <p> <%= item.description %> </p>
+        </div>
+    </div>
+    <form action='/<%=item._id%>/comment' method="POST" class="row input-group ">
+        <input type="text" placeholder="Always wanted one!" name="text" style="margin-left: 15px" class="form-control" >
+        <div class="input-group-append">
+            <button class="btn btn-primary " style="margin-right: -15px;">Comment</button>
+        </div>
+        <!-- <div class="col-md-6" >
+        </div> -->
+    </form>
+
+        <div>
             <% item.comments.forEach(function(comment){ %>
-                <p> <strong><%=comment.author.username %></strong> <%= comment.text %> </p>
-                    <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                <div class="row">
+                <p class="col"> <strong style="margin-right: 8px;"><%=comment.author.username %></strong>   <%= comment.text %> </p>
+                <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                    <div class="col-auto text-right">
                         <a class="btn btn-warning btn-sm" href="/<%=item._id%>/comment/<%=comment._id%>/edit">Edit</a>
                         <form style="display: inline" action="/<%=item._id%>/comment/<%=comment._id%>?_method=DELETE" method="post">
                             <button class="btn btn-danger btn-sm">Delete</button>
                         </form>
-                    <% } %>
+                    </div>
+                <% } %>
+                </div>
             <% }) %>
-            <a class="btn btn-primary" style="display: block" href="/<%= item._id%>/comment/new">Add comment</a>
-        </div>
-    </div>
+    </>
 </div>
-<% include partials/footer.ejs %>
+<%- include ('partials/footer.ejs') %>

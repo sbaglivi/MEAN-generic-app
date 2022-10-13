@@ -1,0 +1,51 @@
+.logoutButton {
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: contain;
+}
+.card-body {
+    background-color: #eee;
+}
+
+.addImage {
+    padding: 3em;
+}
+
+.seeMoreButton {
+    float: right;
+}
+
+.descriptionDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.singleItemDiv > * {
+    margin-top: 1em;
+}
+.singleItemDiv:last-child {
+    margin-bottom: 1em;
+}
+
+.commentInput {
+    margin-left: 15px;
+    margin-right: -15px;
+}
+.homeContainer {
+    margin-bottom: 1em;
+}
+
+.fallback {
+    max-height: 400px !important;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px 200px;
+    background-image: url("fallback-image.svg");
+}

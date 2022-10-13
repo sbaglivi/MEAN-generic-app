@@ -1,21 +1,25 @@
-<% include partials/header.ejs %>
-<div style="width:40%; margin: 0 auto; text-align: center;">
-    <h1 style="padding: 5%">Editing</h1>
-    <form ACTION="/<%=item._id%>?_method=PUT" METHOD="POST">
+<%- include ('partials/header.ejs') %>
+<div class="container">
+    <h1 class="my-5 text-center">Update item</h1>
+    <form ACTION="/" METHOD="POST">
         <div class="form-group">
-            <input type="text" class="form-control" name="updatedItem[name]" value="<%=item.name%>">
+            <label for="itemName">Title</label>
+            <input id='itemName' type="text" class="form-control" name="newItem[name]" placeholder="Item title" value="<%=item.name%>">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="updatedItem[price]" value="<%=item.price%>">
+            <label for="itemPrice">Price</label>
+            <input type="text" id='itemPrice' class="form-control" name="newItem[price]" placeholder="Item price" value="<%=item.price%>">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="updatedItem[image]" value="<%=item.image%>">
+            <label for="itemImage">Image link</label>
+            <input type="text" id="itemImage" class="form-control" name="newItem[image]" placeholder="Url of the image" value="<%=item.image%>">
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="updatedItem[description]"><%=item.description%></textarea>
+            <label for="itemDescription">Item description</label>
+            <textarea id="itemDescription" class="form-control" name="newItem[description]" placeholder="Brief description of the item" ><%=item.description%></textarea>
         </div>  
-        <button style="margin-top: 5%" class="btn btn-success btn-lg">Submit</button>
+        <button style="display: block;" class="btn btn-success btn-lg mx-auto px-5">Submit</button>
     </form>
 </div>
 
-<% include partials/footer.ejs %>
+<%- include ('partials/footer.ejs') %>

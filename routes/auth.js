@@ -25,10 +25,12 @@ router.post('/login', passport.authenticate("local", {failureRedirect: '/login'}
     res.redirect(req.session.backURL ||  '/');
     delete req.session.returnTo;
 })
-router.get('/logout',function(req,res){
-    req.flash('success', 'Successfully logged out');
-    req.logout();
-    res.redirect('/');
+router.post('/logout',function(req,res,next){
+    req.logout(err => {
+        if (err) return next(err);
+        req.flash('success', 'Successfully logged out');
+        res.redirect('/')
+    });
 })
 
 module.exports = router;
