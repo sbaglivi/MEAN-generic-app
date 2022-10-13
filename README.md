@@ -2,7 +2,7 @@
 ![website main page](https://github.com/sbaglivi/mean_app/blob/master/assets/images/website_ss.png?raw=true)
 <hr/>
 Learning project made using NodeJS, Express and MongoDB to serve server rendered pages with EJS as the template engine.
-The website also uses bootstrap for styling.
+The website also uses Bootstrap for styling.
 
 It implements authentication (through passport.js), a REST API and crud functionalities both for the 'item' listings and for comments on the individual item pages.
 
